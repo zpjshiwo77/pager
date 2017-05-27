@@ -33,6 +33,9 @@
 <script>
     var ipager = new pager();
     ipager.init($(".container"),{now:1,total:17,function(page){console.log(page)}});
+    setTimeout(function(){
+        ipager.reRender({now:5,total:18});
+    },5000);
 </script>
 </body>
 </html>

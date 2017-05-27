@@ -26,6 +26,13 @@ var pager = function(){
 		btnInit();
 	}//end func
 
+	//重新渲染页面
+	_self.reRender = function(opts){
+		nowPage = opts.now;
+		totalPage = opts.total;
+		renderPager();
+	}//end func
+
 	//渲染分页器
 	function renderPager(){
 		var cont = '<div class="pager"><span class="prev">上一页</span>';
