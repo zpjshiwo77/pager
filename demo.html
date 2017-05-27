@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>分页器demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/pager.css">
+</head>
+<body>
+    <div class="container" id="icontainer">
+        <div class="pager">
+            <span>上一页</span>
+            <b class="active">1</b>
+            <b>2</b>
+            <b>3</b>
+            <b>...</b>
+            <b>17</b>
+            <span>下一页</span>
+            <input type="text" id="pageNum">
+            <span>go</span>
+        </div>
+    </div>
+    <style>
+    .container{
+        width: auto;
+        float: right;
+        margin-right: 50px;
+    }
+    </style>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/pager.js"></script>
+<script>
+    var ipager = new pager();
+    ipager.init($(".container"),{now:1,total:17,function(page){console.log(page)}});
+</script>
+</body>
+</html>
