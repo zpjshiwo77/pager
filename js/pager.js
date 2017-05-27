@@ -28,9 +28,14 @@ var pager = function(){
 
 	//重新渲染页面
 	_self.reRender = function(opts){
-		nowPage = opts.now;
-		totalPage = opts.total;
-		renderPager();
+		if(opts.total != totalPage) {
+			nowPage = opts.now;
+			totalPage = opts.total;
+			renderPager();
+		}
+		else if(opts.now != nowPage){
+			jumpPage(opts.now);
+		}
 	}//end func
 
 	//渲染分页器
