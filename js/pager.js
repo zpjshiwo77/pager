@@ -28,10 +28,13 @@ var pager = function(){
 
 	//重新渲染页面
 	_self.reRender = function(opts){
-		if(opts.total && opts.total != totalPage) {
-			totalPage = opts.total;
-			if(nowPage > totalPage) nowPage = totalPage;
-			renderPager();
+		if(opts.total) {
+			if(opts.total != totalPage){
+				totalPage = opts.total;
+				if(nowPage > totalPage) nowPage = totalPage;
+				renderPager();
+			}
+			jumpPage(nowPage);
 		}
 		else if(opts.now && opts.now != nowPage){
 			jumpPage(opts.now);
