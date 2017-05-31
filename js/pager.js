@@ -28,13 +28,16 @@ var pager = function(){
 
 	//重新渲染页面
 	_self.reRender = function(opts){
-		if(opts.total != totalPage) {
-			nowPage = opts.now;
+		if(opts.total && opts.total != totalPage) {
 			totalPage = opts.total;
+			if(nowPage > totalPage) nowPage = totalPage;
 			renderPager();
 		}
-		else if(opts.now != nowPage){
+		else if(opts.now && opts.now != nowPage){
 			jumpPage(opts.now);
+		}
+		else if(!opts.now && !opts.total){
+			jumpPage(nowPage);
 		}
 	}//end func
 
@@ -46,8 +49,6 @@ var pager = function(){
             	cont += "<b>"+(i+1)+"</b>";
             };
             cont += '<b class="more">...</b><b>'+totalPage+'</b><span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span></div>';
-            pagerEle.empty().append(cont);
-            jumpPage(nowPage);
 		}
 		else{
             for (var i = 0; i < totalPage; i++) {
@@ -55,8 +56,9 @@ var pager = function(){
             	else cont += "<b>"+(i+1)+"</b>";
             };
             cont +='<span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span></div>';
-            pagerEle.empty().append(cont);
 		}
+		pagerEle.empty().append(cont);
+        jumpPage(nowPage);
 	}//end func
 
 	//按键初始化
