@@ -46,19 +46,19 @@ var pager = function(){
 
 	//渲染分页器
 	function renderPager(){
-		var cont = '<div class="pager"><span class="prev">上一页</span>';
+		var cont = '<div class="pager"><span class="first">首页</span><span class="prev">上一页</span>';
 		if(totalPage > 6){
 			for (var i = 0; i < 4; i++) {
             	cont += "<b>"+(i+1)+"</b>";
             };
-            cont += '<b class="more">...</b><b>'+totalPage+'</b><span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span></div>';
+            cont += '<b class="more">...</b><b>'+totalPage+'</b><span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span><span class="last">尾页</span></div>';
 		}
 		else{
             for (var i = 0; i < totalPage; i++) {
             	if(nowPage == (i+1)) cont += "<b class='active'>"+(i+1)+"</b>";
             	else cont += "<b>"+(i+1)+"</b>";
             };
-            cont +='<span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span></div>';
+            cont +='<span class="next">下一页</span><input type="text" id="pageNum"><span class="go">GO</span><span class="last">尾页</span></div>';
 		}
 		pagerEle.empty().append(cont);
         jumpPage(nowPage);
@@ -68,6 +68,8 @@ var pager = function(){
 	function btnInit(){
 		pagerEle.on("click",".prev",prevPage);
 		pagerEle.on("click",".next",nextPage);
+		pagerEle.on("click",".first",firstPage);
+		pagerEle.on("click",".last",lastPage);
 		pagerEle.on("click","b",function(){
 			var that = $(this);
 			if(!that.hasClass('more')){
@@ -89,10 +91,26 @@ var pager = function(){
 		}
 	}//end func
 
-	//前一页一页
+	//前一页
 	function prevPage(){
 		if(nowPage > 1){
 			nowPage--;
+			jumpPage(nowPage);
+		}
+	}//end func
+
+	//第一页
+	function firstPage(){
+		if(nowPage != 1){
+			nowPage = 1;
+			jumpPage(nowPage);
+		}
+	}//end func
+
+	//最后一页
+	function lastPage(){
+		if(nowPage != totalPage){
+			nowPage = totalPage;
 			jumpPage(nowPage);
 		}
 	}//end func

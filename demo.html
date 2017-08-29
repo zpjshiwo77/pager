@@ -32,7 +32,7 @@
 <script src="js/pager.js"></script>
 <script>
     var ipager = new pager();
-    ipager.init($(".container"),{now:1,total:17,function(page){console.log(page)}});
+    ipager.init($(".container"),{now:1,total:1,function(page){console.log(page)}});
     setTimeout(function(){
         ipager.reRender({now:5,total:18});
     },5000);
